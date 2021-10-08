@@ -428,6 +428,11 @@ fieldset[disabled] .btn-danger.active {
   background-repeat: repeat-x;
   border-color: #9acfea;
 }
+.alert-info-cancel{
+  color: #8f3131;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
 .alert-warning {
   background-image: -webkit-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
   background-image:      -o-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);

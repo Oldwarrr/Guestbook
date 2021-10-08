@@ -14,7 +14,7 @@ if(isset($_POST)){
 			    $_SESSION['msg'] = 'Запись успешно сохранена!';
 			    header('Location: index.php');
             }else{
-                $_SESSION['msg'] = '<span style = "color: #d64242;">Слишком длинное сообщение!</span>';
+                $_SESSION['msg'] = 'Слишком длинное сообщение!';
 			    header('Location: index.php');
             }
 			

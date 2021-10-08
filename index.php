@@ -9,19 +9,16 @@ $addMessage = $mysql->query("SELECT `message` FROM `guests`");
 $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">  
 		<title>Гостевая книга</title>
-		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div id="wrapper">
+		<div class="wrapper" id="wrapper">
 			<h1>Комментарии</h1>
 
 			<!-- PHP Script -->
@@ -29,9 +26,9 @@ $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 			 postMessage($add);
 			 if(isset($_SESSION['msg'])){
 				if($_SESSION['msg'] === 'Запись успешно сохранена!'){   //  Заготовка для смены фона в зависимости от результата длины сообщения
-					echo "<div class='info alert alert-info'>" . $_SESSION['msg']  . "</div>"; //Обычный фон если меньше нормы
+					echo "<div class='alert success'>" . $_SESSION['msg']  . "</div>"; //Обычный фон если меньше нормы
 				}else{
-					echo "<div class='info alert alert-info cancel'>" . $_SESSION['msg']  . "</div>"; // При превышении нормы(НЕ РАБОТАЕТ!)
+					echo "<div class='alert cancel'>" . $_SESSION['msg']  . "</div>"; // Слишком длинное сообщение
 
 				}
 						
@@ -41,11 +38,11 @@ $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 
 
 			<!-- HTML Form -->
-			<div id="form">
+			<div class="form" id="form">
 				<form action="addComment.php" method="POST">
-					<p><input name="name" class="form-control" placeholder="Ваше имя" autocomplete="off"></p>
-					<p><textarea name="message" class="form-control" placeholder="Ваш отзыв"></textarea></p>
-					<p><input type="submit" class="btn btn-info btn-block" value="Сохранить"></p>
+					<input class="name" name="name" type="text" autocomplete="off" placeholder="Ваше имя">
+					<textarea class="text" name="message" autocomplete="off" placeholder="Ваш отзыв"></textarea>
+					<button class="btn" type="submit" name="submit">Сохранить</button>	
 				</form>	
 			</div>
 			

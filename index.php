@@ -27,10 +27,9 @@ $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 			 postMessage($add);
 			 if(isset($_SESSION['msg'])){
 				if($_SESSION['msg'] === 'Запись успешно сохранена!'){   //  Заготовка для смены фона в зависимости от результата длины сообщения
-					echo "<div class='alert success'>" . $_SESSION['msg']  . "</div>"; //Обычный фон если меньше нормы
+					echo "<div class='alert success'>" . $_SESSION['msg']  . "</div>"; // Запись успешно сохранена
 				}else{
 					echo "<div class='alert cancel'>" . $_SESSION['msg']  . "</div>"; // Слишком длинное сообщение
-
 				}
 						
 			 }

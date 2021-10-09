@@ -19,6 +19,7 @@ if(isset($_POST)){
             }
 			
 		}else{
+			$_SESSION['msg'] = 'Заполните пустые поля!';
             header('Location: index.php');
 		}
 	}else{

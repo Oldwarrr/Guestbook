@@ -1,6 +1,6 @@
 <?php
-require_once 'db.php';
-require_once 'functions.php';
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
 
 // Взяли данные из базы
 $addDate = $mysql->query("SELECT `date` FROM `guests`");
@@ -15,13 +15,14 @@ $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 	<head>
 		<meta charset="utf-8">  
 		<title>Гостевая книга</title>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="includes/style.css">
 	</head>
 	<body>
 		<div class="wrapper" id="wrapper">
 			<h1>Комментарии</h1>
-
+			
 			<!-- PHP Script -->
+	
 			<?php
 			 postMessage($add);
 			 if(isset($_SESSION['msg'])){
@@ -47,5 +48,6 @@ $add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC");
 			</div>
 			
 		</div>
+		<script src="includes/javascript.js"></script>
 	</body>
 </html>

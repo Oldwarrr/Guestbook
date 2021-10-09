@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once 'includes/db.php';
 
 //Добавили данные если не пуст $_POST
 if(isset($_POST)){

@@ -1,4 +1,11 @@
 <?php
+// Вывод массивов
+function pre($array){
+    echo "<pre>";
+    echo var_dump($array);
+    echo "</pre>";
+}
+
 
 // Функция вывода данных
 function postMessage($result){

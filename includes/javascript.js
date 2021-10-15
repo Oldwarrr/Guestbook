@@ -1,3 +1,4 @@
+// Анимация исчезновения оповещения
 window.addEventListener("load", () => {
 	const block = document.querySelector(".alert");
 

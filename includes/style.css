@@ -98,3 +98,41 @@ h1{
     background-color: #269abc;
     border-color: #1b6d85;
 }
+.pagination{
+    display: flex;
+
+    list-style: none;
+    padding: 0;   
+}
+.pagination__page {
+    display: block;
+    padding: 6px 12px;
+    margin-left: -1px;
+
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    user-select: none;
+
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.pagination__page:hover{
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+    cursor: pointer;
+}
+.pagination__page.active{
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+.pagination__page a{
+    text-decoration: none;
+}
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}

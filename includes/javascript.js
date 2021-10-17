@@ -23,3 +23,11 @@ window.addEventListener("load", () => {
 		block.remove(); // удалить 
 	});
 });
+
+document.addEventListener('submit', ()  => {
+	textarea.addEventListener('keypress', e => {
+	  if (e.keyCode === 13) {
+		form.submit();
+	  }
+	});
+  });

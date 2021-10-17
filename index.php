@@ -9,26 +9,30 @@ $addName = $mysql->query("SELECT `name` FROM `guests`");
 $addMessage = $mysql->query("SELECT `message` FROM `guests`");
 // Определение номера страницы
 if(isset($_GET['page'])){
+	
 	$page = preg_replace('#[^0-9]#i','', $_GET['page']);
 }else {
 	$page = 1; // Номер страницы
 }
 
-
 $limit = 3; // Макс. количество комментариев на странице (Для SQL запроса)
-$start = ($page - 1)*$limit; // Порядковый номер комментария, с которого идет отсчет в БД (Для SQL запроса)
-$add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC LIMIT $start, $limit"); // Данные из БД
+
 $countOfId = $mysql->query("SELECT COUNT(`id`) FROM `guests`"); // Количество комментариев в БД
 $count = $countOfId->fetch_assoc()['COUNT(`id`)']; // Присвоение переменной значения,  равного количеству комментариев в БД
 $pageCount = ceil($count / $limit); // Количество страниц пагинации
-if($page < 1){
+
+if($page < 1){ // Защита от нулевого значения номер страницы
 	$page = 1;
-}elseif($page > $pageCount){
+}elseif($page > $pageCount){ // Если вписать значение страницы выше, чем последняя страница, выведет последнюю страницу
 	$page = $pageCount;
 }
+$start = ($page - 1)*$limit; // Порядковый номер комментария, с которого идет отсчет в БД (Для SQL запроса)
+$add = $mysql->query("SELECT * FROM `guests` ORDER BY `guests` . `date` DESC LIMIT $start, $limit"); // Данные из БД
 
-$centerPages = "";
 
+$centerPages = ""; // В дальнейшем заполняемый (в зависимости от условий) ряд с номерами страниц (пагинация)
+
+// Переменные для управления поведением пагинации
 $sub1 = $page - 1;
 $sub2 = $page - 2;
 $sub3 = $page - 3;
@@ -38,6 +42,7 @@ $add2 = $page + 2;
 $add3 = $page + 3;
 $add4 = $page + 4;
 $disabled = 'disabled';
+
 if($pageCount >= 5){
 	if($page == 1){
 		$centerPages .= "<li><span class='pagination__page active'>$page</span></li>";
@@ -175,12 +180,13 @@ if($pageCount >= 5){
 				</ul>
 			</nav>
 
-			<!-- PHP Script -->
-	
+
 			<?php
 
 			// Вывод данных с БД
-			 postMessage($add);
+			 if($pageCount != 0){
+				postMessage($add);
+			 }
 				
 			// Вывод оповещения о сообщении
 			 if(isset($_SESSION['msg'])){
@@ -196,7 +202,7 @@ if($pageCount >= 5){
 
 
 			<!-- HTML Form -->
-			<div class="form" id="form">
+			<div class="form">
 				<form id="form" action="addComment.php" method="POST">
 					<input class="name" name="name" type="text" autocomplete="off" placeholder="Ваше имя">
 					<textarea class="text" name="message" autocomplete="off" placeholder="Ваш отзыв"></textarea>
